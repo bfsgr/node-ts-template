@@ -1,0 +1,39 @@
+{
+  "private": true,
+  "name": "app-name",
+  "author": "bfsgr",
+  "version": "0.1.0",
+  "main": "dist/main.js",
+  "module": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/main.js",
+      "require": "./dist/main.cjs"
+    }
+  },
+  "scripts": {
+    "lint": "eslint src --fix",
+    "build": "rm -rf ./dist && concurrently npm:build:* --prefix-colors cyan,magenta,blue",
+    "build:types": "tsc",
+    "build:esm": "swc src/main.ts -o dist/main.js -C module.type=es6",
+    "build:cjs": "swc src/main.ts -o dist/main.cjs -C module.type=commonjs"
+  },
+  "devDependencies": {
+    "@swc-node/register": "^1.6.8",
+    "@swc/cli": "^0.3.0",
+    "@swc/core": "^1.3.105",
+    "@types/node": "^20",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3"
+  }
+}
